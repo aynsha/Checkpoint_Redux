@@ -1,4 +1,4 @@
-import { ADD_TASK, TASK_EDIT, TOGGLE_TASK_STATUS, CANCEL_EDIT } from "../Constants/actions-types";
+import { ADD_TASK, TOGGLE_TASK_STATUS } from "../Constants/actions-types";
  
 //Créations de nos actions pour envoyer  des données au reducer.
 let nextTaskId=0;
@@ -16,14 +16,3 @@ export const toggleTaskStatus= (id)=>({
     id,
 });
  
-//Action qui permet d'éditer une tache
-export const taskEdit =(description, id)=>({
-    type: TASK_EDIT,
-    id,
-    description,
-});
-
-//Action  qui annule l'édition d'une tache 
-export const cancelEdit = () => ({
-    type: CANCEL_EDIT,
-  });

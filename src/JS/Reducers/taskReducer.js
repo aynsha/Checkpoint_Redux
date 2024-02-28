@@ -1,9 +1,8 @@
-import { ADD_TASK, TASK_EDIT, TOGGLE_TASK_STATUS, CANCEL_EDIT } from "../Constants/actions-types";
+import { ADD_TASK, TOGGLE_TASK_STATUS } from "../Constants/actions-types";
 
 //Initialisation de notre état
 const initialState= {
     tasks: [],
-    editTask: null,
 };
 
 //Création de notre  reducer qui va gérer l'évolution de notre state en fonction des actions déclenchées
@@ -30,21 +29,7 @@ const taskReducer = (state = initialState, action) => {
                     tasks: state.tasks.map((task)=>
                     task.id === action.id? {...task, isDone: !task.isDone}: task),
                 };
-
-                //Pour modifier une tâche 
-                case TASK_EDIT:
-                    return {
-                      ...state,
-                      tasks: state.tasks.map(task => 
-                        task.id === action.id ? { ...task, description : action.description } : task
-                      ),
-                      editTask: null,
-                  }; 
-                case CANCEL_EDIT:
-                    return {
-                      ...state,
-                      editTask: null,
-                  };   
+  
                 default:
                     return state;
     }
