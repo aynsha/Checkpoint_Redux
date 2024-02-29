@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { toggleTaskStatus } from "../JS/Actions/actions";
 import Task from "./Task";
+
 //Création  du composant  TaskList qui va afficher  la liste des taches et permettre d'ajouter une nouvelle tache.
-const TaskListComponent = ({
-  tasks,
-  toggleTaskStatus, 
-}) => {//Appel de tasks passer en props pour afficher la liste des tâches et de notre action toggleTaskStatus passer en props pour basculer entre les tâche fait ou non fait
+const TaskListComponent = ({ tasks, toggleTaskStatus }) => {//Appel de tasks passer en props pour afficher la liste des tâches et de notre action toggleTaskStatus passer en props pour basculer entre les tâche fait ou non fait
   
-  //Création de nos states 
+  //Création de nos states
   const [filter, setFilter] = useState("all");
-  
 
   //Fonction  qui va filtrer les taches en fonction de la valeur de filter
   const filteredTasks = tasks.filter((task) => {
@@ -23,8 +20,6 @@ const TaskListComponent = ({
     }
   });
 
-  
-
   return (
     <div>
       <h2>Liste des taches</h2>
@@ -35,16 +30,17 @@ const TaskListComponent = ({
         <button onClick={() => setFilter("notDone")}>Non Faites</button>
       </div>
       <ul>
-
-        {/* Condition  */}
+        {/* Pour  */}
         {filteredTasks.map((task) => (
-              //Appel du composant Task pour afficher les tâches
-              <Task
-                key={task.id}
-                task={task}
-                toggleTaskStatus={toggleTaskStatus}
-              /> 
-            ))}
+          <li key={task.id}>
+            {/* //Appel du composant Task pour afficher les tâches */}
+            <Task
+              key={task.id}
+              task={task}
+              toggleTaskStatus={toggleTaskStatus}
+            />
+          </li>
+        ))}
       </ul>
     </div>
   );
